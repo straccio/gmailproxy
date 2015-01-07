@@ -11,8 +11,12 @@ RUN apt-get -y install php5-fpm nginx supervisor stunnel4 netsed
 # Config nginx, ssl, auth.php
 ADD ./nginx.conf /etc/nginx/nginx.conf
 RUN mkdir /etc/nginx/ssl
+
+# Note: included certificate files are self-signed ones,
+# you need to create your own before building the image
 ADD ./ssl.cert /etc/nginx/ssl/ssl.cert
 ADD ./ssl.key /etc/nginx/ssl/ssl.key
+
 ADD ./auth.php /usr/share/nginx/html/auth.php
 
 # Config stunnel4
